@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interviews - HR AI Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="assets/css/hr-platform.css">
+<link rel="stylesheet" href="assets/css/recruitment-pages.css">
+</head>
+<body>
+<aside class="sidebar flex flex-col">
+  <div class="p-5 border-b border-blue-900/30">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      </div>
+      <div>
+        <div class="font-display font-800 text-sm text-white leading-tight">HR AI</div>
+        <div class="text-[10px] text-slate-500 font-medium">Platform v2.0</div>
+      </div>
+    </div>
+  </div>
+  <nav class="flex-1 py-3 overflow-y-auto">
+    <div class="nav-section">Recruitment</div>
+    <div class="nav-item" onclick="window.location.href='vacancies.html'">Vacancies</div>
+    <div class="nav-item" onclick="window.location.href='candidates.html'">Candidates</div>
+    <div class="nav-item" onclick="window.location.href='talent.html'">Talent Pool</div>
+    <div class="nav-item active" onclick="window.location.href='interviews.html'">Interviews</div>
+    <div class="nav-section">System</div>
+    <div class="nav-item" onclick="window.location.href='users.html'">Users</div>
+    <div class="nav-item" onclick="window.location.href='role-permissions.html'">Roles & Permissions</div>
+  </nav>
+</aside>
+
+<div class="main-content page-shell">
+  <div class="topbar px-6 py-3 flex items-center justify-between">
+    <div class="text-lg font-display font-700 text-white">Interviews</div>
+    <div class="flex items-center gap-3">
+      <input class="input text-sm" id="interviewSearch" placeholder="Search candidate, role or stage" style="width:280px">
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">
+        <div class="theme-btn-knob">*</div>
+        <span class="theme-icon-dark">*</span>
+        <span class="theme-icon-light">*</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="page-block space-y-6">
+      <div class="vacancy-hero">
+        <div>
+          <div class="eyebrow">Backend-ready board</div>
+          <h1 class="vacancy-hero-title">Interview pipeline with static cards</h1>
+          <p class="vacancy-hero-copy">Render interview cards from backend grouped by status. Search already reads `data-interview-card` attributes.</p>
+        </div>
+        <div class="backend-hook">
+          <strong>Backend hook</strong><br>
+          Group items into Scheduled, Completed and Decision Logged columns.
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4">
+        <div class="kanban-col p-4">
+          <div class="text-xs font-700 uppercase tracking-wider text-slate-500 mb-3 px-1">Scheduled <span class="badge badge-cyan ml-1">2</span></div>
+          <div class="space-y-3">
+            <article class="kanban-card" data-interview-card data-name="Kamran Nasirov" data-role="Backend Developer" data-stage="scheduled">
+              <div class="text-sm font-600 text-white">Kamran Nasirov</div>
+              <div class="text-xs text-slate-500 mb-2">Backend Developer</div>
+              <div class="badge badge-cyan text-[10px]">18 Mar 2026 / 10:00</div>
+            </article>
+            <article class="kanban-card" data-interview-card data-name="Aynur Quliyeva" data-role="Product Designer" data-stage="scheduled">
+              <div class="text-sm font-600 text-white">Aynur Quliyeva</div>
+              <div class="text-xs text-slate-500 mb-2">Product Designer</div>
+              <div class="badge badge-cyan text-[10px]">18 Mar 2026 / 14:30</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="kanban-col p-4">
+          <div class="text-xs font-700 uppercase tracking-wider text-slate-500 mb-3 px-1">Completed <span class="badge badge-green ml-1">1</span></div>
+          <div class="space-y-3">
+            <article class="kanban-card" data-interview-card data-name="Sahil Huseynov" data-role="Data Analyst" data-stage="completed">
+              <div class="text-sm font-600 text-white">Sahil Huseynov</div>
+              <div class="text-xs text-slate-500 mb-2">Data Analyst</div>
+              <div class="badge badge-green text-[10px]">Completed successfully</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="kanban-col p-4">
+          <div class="text-xs font-700 uppercase tracking-wider text-slate-500 mb-3 px-1">Decision Logged <span class="badge badge-red ml-1">1</span></div>
+          <div class="space-y-3">
+            <article class="kanban-card" data-interview-card data-name="Nigar Aliyeva" data-role="Backend Developer" data-stage="rejected">
+              <div class="text-sm font-600 text-white">Nigar Aliyeva</div>
+              <div class="text-xs text-slate-500 mb-2">Backend Developer</div>
+              <div class="badge badge-red text-[10px]">Rejected after technical round</div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/ui-shell.js"></script>
+<script src="assets/js/interviews-page.js"></script>
+</body>
+</html>

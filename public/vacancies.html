@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vacancies - HR AI Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="assets/css/hr-platform.css">
+<link rel="stylesheet" href="assets/css/recruitment-pages.css">
+</head>
+<body>
+<aside class="sidebar flex flex-col">
+  <div class="p-5 border-b border-blue-900/30">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </div>
+      <div>
+        <div class="font-display font-800 text-sm text-white leading-tight">HR AI</div>
+        <div class="text-[10px] text-slate-500 font-medium">Platform v2.0</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="flex-1 py-3 overflow-y-auto">
+    <div class="nav-section">Main</div>
+    <div class="nav-item" onclick="window.location.href='dashboard.html'">
+      <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h7v7H3V7zm11 0h7v3h-7V7zm0 7h7v3h-7v-3zm-11 4h7v3H3v-3z"/></svg>
+      Dashboard
+    </div>
+
+    <div class="nav-section">Recruitment</div>
+    <div class="nav-item active" onclick="window.location.href='vacancies.html'">
+      <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      Vacancies
+    </div>
+    <div class="nav-item" onclick="window.location.href='candidates.html'">
+      <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      Candidates
+    </div>
+    <div class="nav-item" onclick="window.location.href='talent.html'">
+      <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+      Talent Pool
+    </div>
+    <div class="nav-item" onclick="window.location.href='interviews.html'">
+      <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Interviews
+    </div>
+
+    <div class="nav-section">System</div>
+    <div class="nav-item" onclick="window.location.href='users.html'">
+      <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zM19 21H5a2 2 0 01-2-2v-1a7 7 0 0114 0v1a2 2 0 01-2 2z"/></svg>
+      Users
+    </div>
+    <div class="nav-item" onclick="window.location.href='role-permissions.html'">
+      <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L6 20.75M6 20.75h4.25M6 20.75V16.5M14 4l6 6M8 10l8-8 6 6-8 8-6 2 2-6z"/></svg>
+      Roles & Permissions
+    </div>
+  </nav>
+
+  <div class="p-4 border-t border-blue-900/30">
+    <div class="flex items-center gap-3">
+      <div class="avatar bg-gradient-to-br from-brand-500 to-accent text-white text-sm">HR</div>
+      <div class="flex-1 min-w-0">
+        <div class="text-sm font-semibold text-white truncate">Nicat Ismayilov</div>
+        <div class="text-xs text-slate-500">HR Manager</div>
+      </div>
+      <div class="w-2 h-2 rounded-full bg-success"></div>
+    </div>
+  </div>
+</aside>
+
+<div class="main-content page-shell">
+  <div class="topbar px-6 py-3 flex items-center justify-between">
+    <div class="text-lg font-display font-700 text-white">Vacancies</div>
+    <div class="flex items-center gap-3">
+      <a class="btn-primary" href="vacancy-create.html">Create vacancy</a>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">
+        <div class="theme-btn-knob">*</div>
+        <span class="theme-icon-dark">*</span>
+        <span class="theme-icon-light">*</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="page-block space-y-6">
+      <div class="vacancy-hero">
+        <div>
+          <div class="eyebrow">Backend-ready vacancy board</div>
+          <h1 class="vacancy-hero-title">Static vacancy structure for server rendering</h1>
+          <p class="vacancy-hero-copy">These cards are now plain HTML. Replace hardcoded rows with backend loop output and keep the existing classes and data attributes.</p>
+        </div>
+        <div class="backend-hook">
+          <strong>Backend hook</strong><br>
+          Render vacancy cards inside the board and keep filters bound to
+          <code>data-vacancy-card</code>.
+        </div>
+      </div>
+
+      <div class="grid grid-cols-4 gap-4">
+        <div class="stat-card">
+          <div class="text-xs text-slate-500">Total vacancies</div>
+          <div class="mt-2 text-2xl font-display font-700 text-white">4</div>
+        </div>
+        <div class="stat-card">
+          <div class="text-xs text-slate-500">Published</div>
+          <div class="mt-2 text-2xl font-display font-700 text-white">2</div>
+        </div>
+        <div class="stat-card">
+          <div class="text-xs text-slate-500">Draft / paused</div>
+          <div class="mt-2 text-2xl font-display font-700 text-white">2</div>
+        </div>
+        <div class="stat-card">
+          <div class="text-xs text-slate-500">Interview steps</div>
+          <div class="mt-2 text-2xl font-display font-700 text-white">6</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="vacancy-toolbar">
+          <div class="vacancy-toolbar-group">
+            <input class="input" id="vacancySearch" placeholder="Search title, department, location">
+          </div>
+          <div class="vacancy-toolbar-group vacancy-toolbar-slim">
+            <select class="input" id="vacancyDepartment">
+              <option value="all">All departments</option>
+              <option value="IT">IT</option>
+              <option value="Product">Product</option>
+              <option value="HR">HR</option>
+              <option value="Analytics">Analytics</option>
+            </select>
+          </div>
+          <div class="vacancy-toolbar-group vacancy-toolbar-slim">
+            <select class="input" id="vacancyStatus">
+              <option value="all">All statuses</option>
+              <option value="published">Published</option>
+              <option value="paused">Paused</option>
+              <option value="draft">Draft</option>
+              <option value="closed">Closed</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="vacancy-board">
+        <article class="card vacancy-card" data-vacancy-card data-title="Backend Developer" data-department="IT" data-location="Baku" data-status="published">
+          <div class="vacancy-card-top">
+            <div>
+              <div class="text-xs text-slate-500">IT / Hybrid / Full-time</div>
+              <h3 class="vacancy-card-title">Backend Developer</h3>
+              <p class="text-sm text-slate-400">Baku / Middle / closes 28 Mar 2026</p>
+            </div>
+            <span class="badge badge-green">Published</span>
+          </div>
+          <div class="vacancy-card-metrics">
+            <div><strong>47</strong><span>Applicants</span></div>
+            <div><strong>3</strong><span>Interviews</span></div>
+            <div><strong>Live</strong><span>Pipeline</span></div>
+          </div>
+          <div class="vacancy-card-tags">
+            <span class="vacancy-chip is-required">Laravel</span>
+            <span class="vacancy-chip is-required">PHP</span>
+            <span class="vacancy-chip is-required">PostgreSQL</span>
+            <span class="vacancy-chip">Docker</span>
+          </div>
+          <p class="vacancy-card-copy">Build and maintain internal HR products, REST APIs and integration services for the recruitment pipeline.</p>
+          <div class="vacancy-card-actions">
+            <a class="btn-primary" href="candidates.html?vacancy=vac-001">Candidates</a>
+            <a class="btn-ghost" href="vacancy-create.html?id=vac-001">Edit</a>
+            <button class="btn-danger" type="button">Delete</button>
+          </div>
+        </article>
+
+        <article class="card vacancy-card" data-vacancy-card data-title="Product Designer" data-department="Product" data-location="Baku" data-status="paused">
+          <div class="vacancy-card-top">
+            <div>
+              <div class="text-xs text-slate-500">Product / Hybrid / Full-time</div>
+              <h3 class="vacancy-card-title">Product Designer</h3>
+              <p class="text-sm text-slate-400">Baku / Senior / closes 23 Mar 2026</p>
+            </div>
+            <span class="badge badge-cyan">Paused</span>
+          </div>
+          <div class="vacancy-card-metrics">
+            <div><strong>23</strong><span>Applicants</span></div>
+            <div><strong>2</strong><span>Interviews</span></div>
+            <div><strong>Paused</strong><span>Pipeline</span></div>
+          </div>
+          <div class="vacancy-card-tags">
+            <span class="vacancy-chip is-required">Figma</span>
+            <span class="vacancy-chip is-required">Design Systems</span>
+            <span class="vacancy-chip">UX Writing</span>
+          </div>
+          <p class="vacancy-card-copy">Own UX flows for candidate screening, interview feedback and recruiter dashboards.</p>
+          <div class="vacancy-card-actions">
+            <a class="btn-primary" href="candidates.html?vacancy=vac-002">Candidates</a>
+            <a class="btn-ghost" href="vacancy-create.html?id=vac-002">Edit</a>
+            <button class="btn-danger" type="button">Delete</button>
+          </div>
+        </article>
+
+        <article class="card vacancy-card" data-vacancy-card data-title="HR Operations Specialist" data-department="HR" data-location="Baku" data-status="draft">
+          <div class="vacancy-card-top">
+            <div>
+              <div class="text-xs text-slate-500">HR / Onsite / Full-time</div>
+              <h3 class="vacancy-card-title">HR Operations Specialist</h3>
+              <p class="text-sm text-slate-400">Baku / Middle / closes 03 Apr 2026</p>
+            </div>
+            <span class="badge badge-yellow">Draft</span>
+          </div>
+          <div class="vacancy-card-metrics">
+            <div><strong>0</strong><span>Applicants</span></div>
+            <div><strong>0</strong><span>Interviews</span></div>
+            <div><strong>Draft</strong><span>Pipeline</span></div>
+          </div>
+          <div class="vacancy-card-tags">
+            <span class="vacancy-chip is-required">HRIS</span>
+            <span class="vacancy-chip is-required">Reporting</span>
+            <span class="vacancy-chip">Excel</span>
+          </div>
+          <p class="vacancy-card-copy">Support employee document workflows, leave administration and internal reporting operations.</p>
+          <div class="vacancy-card-actions">
+            <a class="btn-primary" href="candidates.html?vacancy=vac-003">Candidates</a>
+            <a class="btn-ghost" href="vacancy-create.html?id=vac-003">Edit</a>
+            <button class="btn-danger" type="button">Delete</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/ui-shell.js"></script>
+<script src="assets/js/vacancies-page.js"></script>
+</body>
+</html>

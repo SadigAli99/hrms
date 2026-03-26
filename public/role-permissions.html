@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roles & Permissions - HR AI Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="assets/css/hr-platform.css">
+    <link rel="stylesheet" href="assets/css/recruitment-pages.css">
+</head>
+
+<body>
+    <aside class="sidebar flex flex-col">
+        <div class="p-5 border-b border-blue-900/30">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.75 17L6 20.75M6 20.75h4.25M6 20.75V16.5M14 4l6 6M8 10l8-8 6 6-8 8-6 2 2-6z" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="font-display font-800 text-sm text-white leading-tight">HR AI</div>
+                    <div class="text-[10px] text-slate-500 font-medium">Platform v2.0</div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 py-3 overflow-y-auto">
+            <div class="nav-section">System</div>
+            <div class="nav-item" onclick="window.location.href='users.html'">Users</div>
+            <div class="nav-item active" onclick="window.location.href='role-permissions.html'">Roles & Permissions
+            </div>
+        </nav>
+    </aside>
+
+    <div class="main-content page-shell">
+        <div class="topbar px-6 py-3 flex items-center justify-between">
+            <div class="text-lg font-display font-700 text-white">Roles & Permissions</div>
+            <div class="flex items-center gap-3">
+                <a class="btn-primary btn-with-icon" href="/role/create">
+                    <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    <span>Create role</span>
+                </a>
+                <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">
+                    <div class="theme-btn-knob">*</div>
+                    <span class="theme-icon-dark">*</span>
+                    <span class="theme-icon-light">*</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="content-wrap">
+            <div class="page-block space-y-6">
+                <div class="vacancy-hero">
+                    <div>
+                        <div class="eyebrow">RBAC structure</div>
+                        <h1 class="vacancy-hero-title">Role definition and permission assignment</h1>
+                        <p class="vacancy-hero-copy">Use this matrix as the backend-facing structure for role based
+                            access control. Each permission row should map cleanly to your authorization layer.</p>
+                    </div>
+                    <div class="backend-hook">
+                        <strong>Backend hook</strong><br>
+                        Store roles, permissions and role-permission joins. Render checkbox state server-side.
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="card">
+                        <div class="text-xs text-slate-500">Roles</div>
+                        <div class="mt-2 text-2xl font-display font-700 text-white">4</div>
+                    </div>
+                    <div class="card">
+                        <div class="text-xs text-slate-500">Permission groups</div>
+                        <div class="mt-2 text-2xl font-display font-700 text-white">5</div>
+                    </div>
+                    <div class="card">
+                        <div class="text-xs text-slate-500">Custom roles</div>
+                        <div class="mt-2 text-2xl font-display font-700 text-white">1</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="card col-span-1">
+                        <div class="vacancy-section-header">
+                            <div>
+                                <div class="text-base font-display font-700 text-white">Roles</div>
+                                <div class="text-xs text-slate-500">Select role to edit its permission set.</div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <button
+                                class="w-full text-left p-3 rounded-xl border border-brand-500/30 bg-brand-500/10 text-white"
+                                type="button" data-role-tab="super_admin">Super Admin</button>
+                            <button
+                                class="w-full text-left p-3 rounded-xl border border-white/5 bg-surface-700 text-slate-300"
+                                type="button" data-role-tab="hr_manager">HR Manager</button>
+                            <button
+                                class="w-full text-left p-3 rounded-xl border border-white/5 bg-surface-700 text-slate-300"
+                                type="button" data-role-tab="recruiter">Recruiter</button>
+                            <button
+                                class="w-full text-left p-3 rounded-xl border border-white/5 bg-surface-700 text-slate-300"
+                                type="button" data-role-tab="hiring_manager">Hiring Manager</button>
+                        </div>
+                    </div>
+
+                    <div class="card col-span-3">
+                        <div class="flex items-center justify-between mb-5">
+                            <div>
+                                <div class="text-base font-display font-700 text-white">Permission Matrix</div>
+                                <div class="text-xs text-slate-500">Toggle permissions per role. Bulk controls are
+                                    included for faster editing.</div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="btn-ghost text-xs" type="button"
+                                    data-check-all-target="#rolePermissionForm">Grant all</button>
+                                <button class="btn-ghost text-xs" type="button"
+                                    data-clear-all-target="#rolePermissionForm">Clear all</button>
+                            </div>
+                        </div>
+
+                        <form method="post" action="#" id="rolePermissionForm">
+                            <div class="space-y-5">
+                                <div>
+                                    <div class="text-xs uppercase tracking-wider text-slate-500 mb-3">Recruitment</div>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="vacancies.view" checked>
+                                            <div><strong>Vacancies View</strong><span>See vacancy list and
+                                                    details.</span></div>
+                                        </label>
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="vacancies.manage" checked>
+                                            <div><strong>Vacancies Manage</strong><span>Create, update and close
+                                                    vacancies.</span></div>
+                                        </label>
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="candidates.view" checked>
+                                            <div><strong>Candidates View</strong><span>See candidate lists and
+                                                    profiles.</span></div>
+                                        </label>
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="candidates.manage" checked>
+                                            <div><strong>Candidates Manage</strong><span>Reject, move to interview, save
+                                                    to talent pool.</span></div>
+                                        </label>
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="interviews.manage" checked>
+                                            <div><strong>Interviews Manage</strong><span>Schedule and close interview
+                                                    stages.</span></div>
+                                        </label>
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="talent_pool.manage" checked>
+                                            <div><strong>Talent Pool Manage</strong><span>Add and reuse talent
+                                                    profiles.</span></div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="text-xs uppercase tracking-wider text-slate-500 mb-3">People Operations
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="employees.view" checked>
+                                            <div><strong>Employees View</strong><span>Read employee directory.</span>
+                                            </div>
+                                        </label>
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="employees.manage" checked>
+                                            <div><strong>Employees Manage</strong><span>Create and update employee
+                                                    profiles.</span></div>
+                                        </label>
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="leave.manage" checked>
+                                            <div><strong>Leave Manage</strong><span>Approve or reject leave
+                                                    requests.</span></div>
+                                        </label>
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="attendance.view" checked>
+                                            <div><strong>Attendance View</strong><span>Read attendance logs and
+                                                    reports.</span></div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="text-xs uppercase tracking-wider text-slate-500 mb-3">System</div>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="users.manage" checked>
+                                            <div><strong>Users Manage</strong><span>Create users and assign
+                                                    roles.</span></div>
+                                        </label>
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="roles.manage" checked>
+                                            <div><strong>Roles Manage</strong><span>Create roles and assign
+                                                    permissions.</span></div>
+                                        </label>
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="reports.view" checked>
+                                            <div><strong>Reports View</strong><span>Access analytics and exports.</span>
+                                            </div>
+                                        </label>
+                                        <label class="analysis-option"><input type="checkbox" name="permissions[]"
+                                                value="settings.manage" checked>
+                                            <div><strong>Settings Manage</strong><span>Access platform settings.</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-5 backend-hook page-note">
+                                Suggested backend tables:
+                                <code>roles</code>,
+                                <code>permissions</code>,
+                                <code>role_permissions</code>,
+                                <code>user_roles</code>.
+                            </div>
+
+                            <div class="flex justify-end gap-3 mt-5">
+                                <button class="btn-ghost" type="button">Cancel</button>
+                                <button class="btn-primary" type="submit">Save permissions</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/crud-actions.js"></script>
+</body>
+
+</html>

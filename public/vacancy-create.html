@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Vacancy - HR AI Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="assets/css/hr-platform.css">
+    <link rel="stylesheet" href="assets/css/recruitment-pages.css">
+</head>
+
+<body>
+    <aside class="sidebar flex flex-col">
+        <div class="p-5 border-b border-blue-900/30">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="font-display font-800 text-sm text-white leading-tight">HR AI</div>
+                    <div class="text-[10px] text-slate-500 font-medium">Platform v2.0</div>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-1 py-3 overflow-y-auto">
+            <div class="nav-section">Recruitment</div>
+            <div class="nav-item active" onclick="window.location.href='vacancies.html'">
+                <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Vacancies
+            </div>
+            <div class="nav-item" onclick="window.location.href='candidates.html'">
+                <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Candidates
+            </div>
+            <div class="nav-item" onclick="window.location.href='talent.html'">
+                <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+                Talent Pool
+            </div>
+            <div class="nav-item" onclick="window.location.href='interviews.html'">
+                <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Interviews
+            </div>
+            <div class="nav-section">System</div>
+            <div class="nav-item" onclick="window.location.href='users.html'">
+                <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zM19 21H5a2 2 0 01-2-2v-1a7 7 0 0114 0v1a2 2 0 01-2 2z" />
+                </svg>
+                Users
+            </div>
+            <div class="nav-item" onclick="window.location.href='role-permissions.html'">
+                <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9.75 17L6 20.75M6 20.75h4.25M6 20.75V16.5M14 4l6 6M8 10l8-8 6 6-8 8-6 2 2-6z" />
+                </svg>
+                Roles & Permissions
+            </div>
+        </nav>
+    </aside>
+
+    <div class="main-content page-shell">
+        <div class="topbar px-6 py-3 flex items-center justify-between">
+            <div class="text-lg font-display font-700 text-white">Create Vacancy</div>
+            <div class="flex items-center gap-3">
+                <a class="btn-ghost" href="vacancies.html">Back to vacancies</a>
+                <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">
+                    <div class="theme-btn-knob">*</div>
+                    <span class="theme-icon-dark">*</span>
+                    <span class="theme-icon-light">*</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="content-wrap">
+            <div class="page-block">
+                <form id="vacancyForm" class="space-y-6" method="post" action="#">
+                    <div class="vacancy-hero vacancy-hero-tight">
+                        <div>
+                            <div class="eyebrow">Backend-ready form</div>
+                            <h1 class="vacancy-hero-title">Static vacancy form with server-friendly fields</h1>
+                            <p class="vacancy-hero-copy">Use this form directly in backend templates. Requirement chips
+                                are serialized into a hidden input for the first integration pass.</p>
+                        </div>
+                        <div class="backend-hook">
+                            <strong>Backend hook</strong><br>
+                            Submit real action URL and prefill values server-side. The hidden field
+                            <code>vacancy_requirements_payload</code> carries the tag list.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="label" for="vacancyTitle">Title</label>
+                                <input class="input" id="vacancyTitle" name="title" value="Backend Developer">
+                            </div>
+                            <div>
+                                <label class="label" for="vacancyDepartmentInput">Department</label>
+                                <select class="input" id="vacancyDepartmentInput" name="department">
+                                    <option>IT</option>
+                                    <option>Product</option>
+                                    <option>HR</option>
+                                    <option>Analytics</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="label" for="vacancyEmploymentType">Employment type</label>
+                                <select class="input" id="vacancyEmploymentType" name="employment_type">
+                                    <option>Full-time</option>
+                                    <option>Part-time</option>
+                                    <option>Contract</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="label" for="vacancyWorkMode">Work mode</label>
+                                <select class="input" id="vacancyWorkMode" name="work_mode">
+                                    <option>Hybrid</option>
+                                    <option>Onsite</option>
+                                    <option>Remote</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="label" for="vacancySeniority">Seniority</label>
+                                <select class="input" id="vacancySeniority" name="seniority_level">
+                                    <option>Junior</option>
+                                    <option selected>Middle</option>
+                                    <option>Senior</option>
+                                    <option>Lead</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="label" for="vacancyStatusInput">Status</label>
+                                <select class="input" id="vacancyStatusInput" name="status">
+                                    <option selected>Draft</option>
+                                    <option>Published</option>
+                                    <option>Paused</option>
+                                    <option>Closed</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="label" for="vacancyLocation">Location</label>
+                                <input class="input" id="vacancyLocation" name="location" value="Baku">
+                            </div>
+                            <div>
+                                <label class="label" for="vacancyCloseDate">Close date</label>
+                                <input class="input" type="date" id="vacancyCloseDate" name="close_date"
+                                    value="2026-03-28">
+                            </div>
+                            <div>
+                                <label class="label" for="vacancyMinSalary">Min salary</label>
+                                <input class="input" id="vacancyMinSalary" name="min_salary" value="2500">
+                            </div>
+                            <div>
+                                <label class="label" for="vacancyMaxSalary">Max salary</label>
+                                <input class="input" id="vacancyMaxSalary" name="max_salary" value="4000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="card">
+                            <div class="vacancy-section-header">
+                                <div>
+                                    <div class="text-base font-display font-700 text-white">Description</div>
+                                    <div class="text-xs text-slate-500">Main role narrative for recruiter and applicant
+                                        display.</div>
+                                </div>
+                            </div>
+                            <textarea class="input" id="vacancyDescription" name="description"
+                                rows="8">Build and maintain internal HR products, REST APIs and integration services.</textarea>
+                        </div>
+                        <div class="card">
+                            <div class="vacancy-section-header">
+                                <div>
+                                    <div class="text-base font-display font-700 text-white">Requirements notes</div>
+                                    <div class="text-xs text-slate-500">Clarifications for AI parsing and hiring
+                                        constraints.</div>
+                                </div>
+                            </div>
+                            <textarea class="input" id="vacancyRequirementsText" name="requirements_text"
+                                rows="8">Priority role for Q2 delivery. Strong ownership and API design mindset matter.</textarea>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="card col-span-2">
+                            <div class="vacancy-section-header">
+                                <div>
+                                    <div class="text-base font-display font-700 text-white">Structured requirements
+                                    </div>
+                                    <div class="text-xs text-slate-500">These are backend-ready requirement objects for
+                                        matching and filtering.</div>
+                                </div>
+                            </div>
+                            <div class="tag-builder">
+                                <input class="input" id="requirementInput"
+                                    placeholder="Type requirement and press Enter">
+                                <select class="input" id="requirementType">
+                                    <option value="skill">skill</option>
+                                    <option value="tool">tool</option>
+                                    <option value="language">language</option>
+                                    <option value="experience">experience</option>
+                                    <option value="education">education</option>
+                                </select>
+                                <label class="tag-toggle"><input type="checkbox" id="requirementRequired" checked>
+                                    Required</label>
+                                <button class="btn-primary" type="button" id="addRequirementButton">Add tag</button>
+                            </div>
+                            <div class="preset-row">
+                                <button class="preset-chip" type="button" data-preset="Laravel"
+                                    data-type="skill">Laravel</button>
+                                <button class="preset-chip" type="button" data-preset="PHP"
+                                    data-type="skill">PHP</button>
+                                <button class="preset-chip" type="button" data-preset="PostgreSQL"
+                                    data-type="skill">PostgreSQL</button>
+                                <button class="preset-chip" type="button" data-preset="REST API" data-type="skill">REST
+                                    API</button>
+                                <button class="preset-chip" type="button" data-preset="Docker"
+                                    data-type="tool">Docker</button>
+                                <button class="preset-chip" type="button" data-preset="English B2"
+                                    data-type="language">English B2</button>
+                            </div>
+                            <div class="requirement-list" id="requirementList">
+                                <div class="requirement-pill is-required" data-requirement-item data-label="Laravel"
+                                    data-type="skill" data-required="true">
+                                    <div><strong>Laravel</strong><span>skill / required</span></div>
+                                    <button type="button" data-remove-requirement>Remove</button>
+                                </div>
+                                <div class="requirement-pill is-required" data-requirement-item data-label="PHP"
+                                    data-type="skill" data-required="true">
+                                    <div><strong>PHP</strong><span>skill / required</span></div>
+                                    <button type="button" data-remove-requirement>Remove</button>
+                                </div>
+                                <div class="requirement-pill is-optional" data-requirement-item data-label="Docker"
+                                    data-type="tool" data-required="false">
+                                    <div><strong>Docker</strong><span>tool / preferred</span></div>
+                                    <button type="button" data-remove-requirement>Remove</button>
+                                </div>
+                            </div>
+                            <input type="hidden" id="vacancyRequirementsPayload" name="vacancy_requirements_payload">
+                        </div>
+
+                        <div class="card">
+                            <div class="vacancy-section-header">
+                                <div>
+                                    <div class="text-base font-display font-700 text-white">Preview route</div>
+                                    <div class="text-xs text-slate-500">Backend can redirect here after create or
+                                        update.</div>
+                                </div>
+                            </div>
+                            <div class="vacancy-preview">
+                                <div class="badge badge-yellow">Draft</div>
+                                <h3>Backend Developer</h3>
+                                <p>IT / Hybrid / Full-time</p>
+                                <div class="vacancy-card-tags">
+                                    <span class="vacancy-chip is-required">Laravel</span>
+                                    <span class="vacancy-chip is-required">PHP</span>
+                                    <span class="vacancy-chip">Docker</span>
+                                </div>
+                                <div class="preview-meta">
+                                    <span>Baku</span>
+                                    <span>2500 - 4000 AZN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end gap-3">
+                        <a class="btn-ghost" href="vacancies.html">Cancel</a>
+                        <button class="btn-primary" type="submit">Save vacancy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/ui-shell.js"></script>
+    <script src="assets/js/vacancy-form-page.js"></script>
+</body>
+
+</html>

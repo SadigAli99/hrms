@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users - HR AI Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind-config.js"></script>
+    <link rel="stylesheet" href="assets/css/hr-platform.css">
+    <link rel="stylesheet" href="assets/css/recruitment-pages.css">
+</head>
+
+<body>
+    <aside class="sidebar flex flex-col">
+        <div class="p-5 border-b border-blue-900/30">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zM19 21H5a2 2 0 01-2-2v-1a7 7 0 0114 0v1a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="font-display font-800 text-sm text-white leading-tight">HR AI</div>
+                    <div class="text-[10px] text-slate-500 font-medium">Platform v2.0</div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 py-3 overflow-y-auto">
+            <div class="nav-section">Main</div>
+            <div class="nav-item" onclick="window.location.href='dashboard.html'">Dashboard</div>
+
+            <div class="nav-section">System</div>
+            <div class="nav-item active" onclick="window.location.href='users.html'">Users</div>
+            <div class="nav-item" onclick="window.location.href='role-permissions.html'">Roles & Permissions</div>
+
+            <div class="nav-section">Recruitment</div>
+            <div class="nav-item" onclick="window.location.href='vacancies.html'">Vacancies</div>
+            <div class="nav-item" onclick="window.location.href='candidates.html'">Candidates</div>
+            <div class="nav-item" onclick="window.location.href='interviews.html'">Interviews</div>
+        </nav>
+
+        <div class="p-4 border-t border-blue-900/30">
+            <div class="flex items-center gap-3">
+                <div class="avatar bg-gradient-to-br from-brand-500 to-accent text-white text-sm">AD</div>
+                <div class="flex-1 min-w-0">
+                    <div class="text-sm font-semibold text-white truncate">Admin User</div>
+                    <div class="text-xs text-slate-500">System Admin</div>
+                </div>
+                <div class="w-2 h-2 rounded-full bg-success"></div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="main-content page-shell">
+        <div class="topbar px-6 py-3 flex items-center justify-between">
+            <div class="text-lg font-display font-700 text-white">Users</div>
+            <div class="flex items-center gap-3">
+                <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">
+                    <div class="theme-btn-knob">*</div>
+                    <span class="theme-icon-dark">*</span>
+                    <span class="theme-icon-light">*</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="content-wrap">
+            <div class="page-block space-y-6">
+                <div class="vacancy-hero">
+                    <div>
+                        <div class="eyebrow">User management</div>
+                        <h1 class="vacancy-hero-title">System users, roles and access control</h1>
+                        <p class="vacancy-hero-copy">This page is backend-ready. Replace static user rows with
+                            server-rendered records and wire create/edit actions to your auth and RBAC layer.</p>
+                    </div>
+                    <div class="backend-hook">
+                        <strong>Backend hook</strong><br>
+                        Render user rows with role ids, status and department. Open create/edit modal or route to server
+                        form.
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="stat-card">
+                        <div class="text-xs text-slate-500">Total users</div>
+                        <div class="mt-2 text-2xl font-display font-700 text-white">28</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-xs text-slate-500">Active</div>
+                        <div class="mt-2 text-2xl font-display font-700 text-white">24</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-xs text-slate-500">Admins</div>
+                        <div class="mt-2 text-2xl font-display font-700 text-white">3</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-xs text-slate-500">Pending invite</div>
+                        <div class="mt-2 text-2xl font-display font-700 text-white">2</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="vacancy-section-header">
+                        <div>
+                            <div class="text-base font-display font-700 text-white">Users directory</div>
+                            <div class="text-xs text-slate-500">Search, filter and manage system access from one
+                                place.</div>
+                        </div>
+                        <a class="btn-primary btn-with-icon" href="/users/create">
+                            <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4" />
+                            </svg>
+                            <span>Create user</span>
+                        </a>
+                    </div>
+                    <div class="vacancy-toolbar">
+                        <div class="vacancy-toolbar-group">
+                            <input class="input" id="userSearch" data-list-search
+                                placeholder="Search name, email or role">
+                        </div>
+                        <div class="vacancy-toolbar-group vacancy-toolbar-slim">
+                            <select class="input" id="userRoleFilter" data-list-filter="role">
+                                <option value="all">All roles</option>
+                                <option value="super_admin">Super Admin</option>
+                                <option value="hr_manager">HR Manager</option>
+                                <option value="recruiter">Recruiter</option>
+                                <option value="hiring_manager">Hiring Manager</option>
+                            </select>
+                        </div>
+                        <div class="vacancy-toolbar-group vacancy-toolbar-slim">
+                            <select class="input" id="userStatusFilter" data-list-filter="status">
+                                <option value="all">All statuses</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="invited">Invited</option>
+                                <option value="blocked">Blocked</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <table class="tbl">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Last Login</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-list-row data-crud-item data-search="Nicat Ismayilov nicat@company.az hr_manager"
+                                data-delete-entity="Nicat Ismayilov" data-delete-action="/users/1"
+                                data-role="hr_manager" data-status="active">
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="avatar bg-gradient-to-br from-brand-600 to-brand-400 text-white text-xs">
+                                            NI</div>
+                                        <div>
+                                            <div class="font-600 text-white text-sm">Nicat Ismayilov</div>
+                                            <div class="text-xs text-slate-500">nicat@company.az</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-blue">HR Manager</span></td>
+                                <td class="text-slate-300">HR</td>
+                                <td class="text-slate-400 text-xs">16 Mar 2026 / 09:40</td>
+                                <td><span class="badge badge-green">Active</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a class="icon-action-btn" href="/users/1/edit" title="Edit user"
+                                            aria-label="Edit user">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15.232 5.232l3.536 3.536M9 11l6.768-6.768a2.5 2.5 0 113.536 3.536L12.536 14.536A4 4 0 0110.707 15.95L7 17l1.05-3.707A4 4 0 019 11z" />
+                                            </svg>
+                                        </a>
+                                        <button class="icon-action-btn danger" type="button"
+                                            data-crud-delete-trigger title="Delete user"
+                                            aria-label="Delete user">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-3h4m-5 0a1 1 0 00-.894.553L7 7h10l-1.106-2.447A1 1 0 0015 4m-5 0h5" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-list-row data-crud-item data-search="Aysel Kerimova aysel@company.az recruiter"
+                                data-delete-entity="Aysel Kerimova" data-delete-action="/users/2"
+                                data-role="recruiter" data-status="active">
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="avatar bg-gradient-to-br from-cyan-600 to-brand-400 text-white text-xs">
+                                            AK</div>
+                                        <div>
+                                            <div class="font-600 text-white text-sm">Aysel Kerimova</div>
+                                            <div class="text-xs text-slate-500">aysel@company.az</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-cyan">Recruiter</span></td>
+                                <td class="text-slate-300">HR</td>
+                                <td class="text-slate-400 text-xs">15 Mar 2026 / 18:05</td>
+                                <td><span class="badge badge-green">Active</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a class="icon-action-btn" href="/users/2/edit" title="Edit user"
+                                            aria-label="Edit user">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15.232 5.232l3.536 3.536M9 11l6.768-6.768a2.5 2.5 0 113.536 3.536L12.536 14.536A4 4 0 0110.707 15.95L7 17l1.05-3.707A4 4 0 019 11z" />
+                                            </svg>
+                                        </a>
+                                        <button class="icon-action-btn danger" type="button"
+                                            data-crud-delete-trigger title="Delete user"
+                                            aria-label="Delete user">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-3h4m-5 0a1 1 0 00-.894.553L7 7h10l-1.106-2.447A1 1 0 0015 4m-5 0h5" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-list-row data-crud-item
+                                data-search="Samir Huseynov samir@company.az hiring_manager"
+                                data-delete-entity="Samir Huseynov" data-delete-action="/users/3"
+                                data-role="hiring_manager" data-status="invited">
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="avatar bg-gradient-to-br from-violet-600 to-pink-500 text-white text-xs">
+                                            SH</div>
+                                        <div>
+                                            <div class="font-600 text-white text-sm">Samir Huseynov</div>
+                                            <div class="text-xs text-slate-500">samir@company.az</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-purple">Hiring Manager</span></td>
+                                <td class="text-slate-300">IT</td>
+                                <td class="text-slate-400 text-xs">Invite not accepted yet</td>
+                                <td><span class="badge badge-yellow">Invited</span></td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a class="icon-action-btn" href="/users/3/edit" title="Edit user"
+                                            aria-label="Edit user">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15.232 5.232l3.536 3.536M9 11l6.768-6.768a2.5 2.5 0 113.536 3.536L12.536 14.536A4 4 0 0110.707 15.95L7 17l1.05-3.707A4 4 0 019 11z" />
+                                            </svg>
+                                        </a>
+                                        <button class="icon-action-btn danger" type="button"
+                                            data-crud-delete-trigger title="Delete user"
+                                            aria-label="Delete user">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-3h4m-5 0a1 1 0 00-.894.553L7 7h10l-1.106-2.447A1 1 0 0015 4m-5 0h5" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" data-crud-delete-modal>
+        <div class="modal">
+            <div class="flex items-center justify-between mb-5">
+                <div>
+                    <h2 class="font-display font-700 text-xl text-white">Delete User</h2>
+                    <div class="text-xs text-slate-500 mt-1">This action removes the selected user from the current
+                        list view.</div>
+                </div>
+                <button class="text-slate-500 hover:text-white transition-colors" type="button"
+                    data-crud-delete-close>X</button>
+            </div>
+
+            <form class="space-y-4" data-crud-delete-form method="post" action="/users/1">
+                <div class="backend-hook page-note">
+                    You are about to delete <strong data-crud-delete-entity>this user</strong>.
+                    <span data-crud-delete-message>Connect this action to <code>DELETE /users/{id}</code> when backend
+                        is ready.</span>
+                </div>
+
+                <input type="hidden" name="_method" value="DELETE">
+
+                <div class="flex justify-end gap-3">
+                    <button class="btn-ghost" type="button" data-crud-delete-close>Cancel</button>
+                    <button class="btn-danger btn-with-icon" type="submit">
+                        <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-3h4m-5 0a1 1 0 00-.894.553L7 7h10l-1.106-2.447A1 1 0 0015 4m-5 0h5" />
+                        </svg>
+                        <span>Delete user</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/crud-actions.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talent Pool - HR AI Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/js/tailwind-config.js"></script>
+<link rel="stylesheet" href="assets/css/hr-platform.css">
+<link rel="stylesheet" href="assets/css/recruitment-pages.css">
+</head>
+<body>
+<aside class="sidebar flex flex-col">
+  <div class="p-5 border-b border-blue-900/30">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center flex-shrink-0">
+        <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+      </div>
+      <div>
+        <div class="font-display font-800 text-sm text-white leading-tight">HR AI</div>
+        <div class="text-[10px] text-slate-500 font-medium">Platform v2.0</div>
+      </div>
+    </div>
+  </div>
+  <nav class="flex-1 py-3 overflow-y-auto">
+    <div class="nav-section">Recruitment</div>
+    <div class="nav-item" onclick="window.location.href='vacancies.html'">Vacancies</div>
+    <div class="nav-item" onclick="window.location.href='candidates.html'">Candidates</div>
+    <div class="nav-item active" onclick="window.location.href='talent.html'">Talent Pool</div>
+    <div class="nav-item" onclick="window.location.href='interviews.html'">Interviews</div>
+    <div class="nav-section">System</div>
+    <div class="nav-item" onclick="window.location.href='users.html'">Users</div>
+    <div class="nav-item" onclick="window.location.href='role-permissions.html'">Roles & Permissions</div>
+  </nav>
+</aside>
+
+<div class="main-content page-shell">
+  <div class="topbar px-6 py-3 flex items-center justify-between">
+    <div class="text-lg font-display font-700 text-white">Talent Pool</div>
+    <div class="flex items-center gap-3">
+      <input class="input text-sm" id="talentSearch" placeholder="Search talent by name, role or skill" style="width:280px">
+      <select class="input text-sm" id="talentCategory" style="width:180px">
+        <option value="all">All categories</option>
+        <option value="recommended">Recommended</option>
+        <option value="watchlist">Watchlist</option>
+        <option value="future_fit">Future Fit</option>
+      </select>
+      <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">
+        <div class="theme-btn-knob">*</div>
+        <span class="theme-icon-dark">*</span>
+        <span class="theme-icon-light">*</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="content-wrap">
+    <div class="page-block space-y-6">
+      <div class="vacancy-hero">
+        <div>
+          <div class="eyebrow">Reusable candidate base</div>
+          <h1 class="vacancy-hero-title">Static talent pool for backend rendering</h1>
+          <p class="vacancy-hero-copy">Candidates here are not in an active vacancy flow. Add them to a vacancy first, then continue in Candidates and Interviews.</p>
+        </div>
+        <div class="backend-hook">
+          <strong>Backend hook</strong><br>
+          Render each talent card with category and source vacancy metadata.
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-4">
+        <article class="card card-hover" data-talent-card data-name="Kamran Nasirov" data-role="Backend Developer" data-skills="Laravel PHP PostgreSQL" data-category="recommended">
+          <div class="flex items-start gap-3 mb-4">
+            <div class="avatar bg-gradient-to-br from-brand-600 to-accent text-white w-12 h-12 text-sm flex-shrink-0">KN</div>
+            <div class="flex-1">
+              <div class="font-display font-700 text-white">Kamran Nasirov</div>
+              <div class="text-xs text-slate-500">Backend Developer / 4 il</div>
+              <span class="badge badge-green mt-1">Recommended</span>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="badge badge-blue">Laravel</span>
+            <span class="badge badge-blue">PHP</span>
+            <span class="badge badge-blue">PostgreSQL</span>
+          </div>
+          <div class="text-xs text-slate-500 mb-3">Strong backend profile, reusable for PHP-heavy vacancies.</div>
+          <div class="flex gap-2">
+            <button class="btn-primary text-xs py-1.5 flex-1 text-center" type="button" data-action="open-reuse-modal">Add to vacancy</button>
+            <a class="btn-ghost text-xs py-1.5 px-3" href="candidates.html">Profile</a>
+          </div>
+        </article>
+
+        <article class="card card-hover" data-talent-card data-name="Aynur Quliyeva" data-role="Product Designer" data-skills="Figma Design Systems UX" data-category="watchlist">
+          <div class="flex items-start gap-3 mb-4">
+            <div class="avatar bg-gradient-to-br from-brand-600 to-violet-500 text-white w-12 h-12 text-sm flex-shrink-0">AQ</div>
+            <div class="flex-1">
+              <div class="font-display font-700 text-white">Aynur Quliyeva</div>
+              <div class="text-xs text-slate-500">Product Designer / 3 il</div>
+              <span class="badge badge-cyan mt-1">Watchlist</span>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="badge badge-blue">Figma</span>
+            <span class="badge badge-blue">Design Systems</span>
+            <span class="badge badge-blue">UX Writing</span>
+          </div>
+          <div class="text-xs text-slate-500 mb-3">Keep visible for future product design openings.</div>
+          <div class="flex gap-2">
+            <button class="btn-primary text-xs py-1.5 flex-1 text-center" type="button" data-action="open-reuse-modal">Add to vacancy</button>
+            <a class="btn-ghost text-xs py-1.5 px-3" href="candidates.html">Profile</a>
+          </div>
+        </article>
+
+        <article class="card card-hover" data-talent-card data-name="Tural Memmedli" data-role="Data Analyst" data-skills="SQL Python BI" data-category="future_fit">
+          <div class="flex items-start gap-3 mb-4">
+            <div class="avatar bg-gradient-to-br from-brand-600 to-amber-500 text-white w-12 h-12 text-sm flex-shrink-0">TM</div>
+            <div class="flex-1">
+              <div class="font-display font-700 text-white">Tural Memmedli</div>
+              <div class="text-xs text-slate-500">Data Analyst / 2 il</div>
+              <span class="badge badge-yellow mt-1">Future Fit</span>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            <span class="badge badge-blue">SQL</span>
+            <span class="badge badge-blue">Python</span>
+            <span class="badge badge-blue">Analytics</span>
+          </div>
+          <div class="text-xs text-slate-500 mb-3">Not right for current role, but suitable for analytics-heavy openings.</div>
+          <div class="flex gap-2">
+            <button class="btn-primary text-xs py-1.5 flex-1 text-center" type="button" data-action="open-reuse-modal">Add to vacancy</button>
+            <a class="btn-ghost text-xs py-1.5 px-3" href="candidates.html">Profile</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="talentReuseModal">
+  <div class="modal">
+    <div class="flex items-center justify-between mb-5">
+      <div>
+        <h2 class="font-display font-700 text-xl text-white">Add to Vacancy</h2>
+        <div class="text-xs text-slate-500 mt-1">This action should create a candidate application on the backend, then redirect to candidates page.</div>
+      </div>
+      <button class="text-slate-500 hover:text-white transition-colors" type="button" data-action="close-talent-reuse-modal">X</button>
+    </div>
+    <div class="mb-4">
+      <label class="label" for="talentReuseVacancy">Vacancy</label>
+      <select class="input" id="talentReuseVacancy">
+        <option>Backend Developer</option>
+        <option>Product Designer</option>
+        <option>Data Analyst</option>
+      </select>
+    </div>
+    <div class="mb-4">
+      <label class="label" for="talentReuseNote">Recruiter note</label>
+      <textarea class="input" id="talentReuseNote" rows="4" placeholder="Why is this person being added to the vacancy?"></textarea>
+    </div>
+    <div class="flex justify-end gap-3">
+      <button class="btn-ghost" type="button" data-action="close-talent-reuse-modal">Cancel</button>
+      <button class="btn-primary" type="button">Add to vacancy</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/ui-shell.js"></script>
+<script src="assets/js/talent-page.js"></script>
+</body>
+</html>

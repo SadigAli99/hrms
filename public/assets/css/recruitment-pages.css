@@ -1,0 +1,19 @@
+.page-note {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.backend-hook {
+  border: 1px dashed rgba(49, 120, 246, 0.35);
+  background: rgba(49, 120, 246, 0.08);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.backend-hook strong {
+  color: #ffffff;
+}
+
+.backend-hook code {
+  color: #8ec2ff;
+}
