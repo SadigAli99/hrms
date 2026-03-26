@@ -30,7 +30,7 @@ class RoleController extends Controller
     {
         $data = $request->all();
         $roles = $this->roleRepo->filter($data);
-        return view('main.pages.roles.index', compact('roles'));
+        return view('pages.main.roles.index', compact('roles'));
     }
 
     /**
@@ -38,7 +38,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('main.pages.roles.create');
+        return view('pages.main.roles.create');
     }
 
     /**
@@ -58,7 +58,7 @@ class RoleController extends Controller
     public function show(string $id)
     {
         $role = $this->roleRepo->getById($id);
-        return view('main.pages.roles.show', compact('role'));
+        return view('pages.main.roles.show', compact('role'));
     }
 
     /**
@@ -67,7 +67,7 @@ class RoleController extends Controller
     public function edit(string $id)
     {
         $role = $this->roleRepo->getById($id);
-        return view('main.pages.roles.edit', compact('role'));
+        return view('pages.main.roles.edit', compact('role'));
     }
 
     /**
@@ -100,7 +100,7 @@ class RoleController extends Controller
     {
         try {
             $roles = $this->roleRepo->filter($request->all());
-            $view = view('main.pages.roles.partials.list', compact('roles'))->render();
+            $view = view('pages.main.roles.partials.list', compact('roles'))->render();
 
             return response()->json([
                 'success' => true,
@@ -119,7 +119,7 @@ class RoleController extends Controller
         $roles = $this->roleRepo->all();
         $rolePermissions = $this->roleRepo->getPermissions($role->id);
         $permissionGroups = $this->permissionRepo->getByGroup();
-        return view('main.pages.roles.assign-permission', compact('role', 'roles', 'rolePermissions', 'permissionGroups'));
+        return view('pages.main.roles.assign-permission', compact('role', 'roles', 'rolePermissions', 'permissionGroups'));
     }
 
     public function assign_permission(Role $role, RolePermissionRequest $request)

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -52,5 +53,10 @@ class User extends Authenticatable
         $firstname = first_upper_letter($name_arr[0]);
         $lastname = isset($name_arr[1]) ? first_upper_letter($name_arr[1]) : '';
         return $firstname . $lastname;
+    }
+
+    public function department(): HasOne
+    {
+        return $this->hasOne(Department::class, 'manager_user_id', 'id');
     }
 }

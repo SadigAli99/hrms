@@ -25,7 +25,7 @@ class PermissionController extends Controller
     {
         $data = $request->all();
         $permissions = $this->permissionRepo->filter($data);
-        return view('main.pages.permissions.index', compact('permissions'));
+        return view('pages.main.permissions.index', compact('permissions'));
     }
 
     /**
@@ -33,7 +33,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('main.pages.permissions.create');
+        return view('pages.main.permissions.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class PermissionController extends Controller
     public function show(string $id)
     {
         $permission = $this->permissionRepo->getById($id);
-        return view('main.pages.permissions.show', compact('permission'));
+        return view('pages.main.permissions.show', compact('permission'));
     }
 
     /**
@@ -62,7 +62,7 @@ class PermissionController extends Controller
     public function edit(string $id)
     {
         $permission = $this->permissionRepo->getById($id);
-        return view('main.pages.permissions.edit', compact('permission'));
+        return view('pages.main.permissions.edit', compact('permission'));
     }
 
     /**
@@ -95,7 +95,7 @@ class PermissionController extends Controller
     {
         try {
             $permissions = $this->permissionRepo->filter($request->all());
-            $view = view('main.pages.permissions.partials.list', compact('permissions'))->render();
+            $view = view('pages.main.permissions.partials.list', compact('permissions'))->render();
 
             return response()->json([
                 'success' => true,

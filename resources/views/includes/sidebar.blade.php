@@ -18,7 +18,6 @@
 
     <!-- Nav -->
     <nav class="flex-1 py-3 overflow-y-auto">
-        <div class="nav-section">Ana Panellər</div>
         <div class="nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}"
             onclick="window.location.href='{{ route('dashboard') }}'">
             <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,7 +27,7 @@
             Dashboard
         </div>
 
-        <div class="nav-section">İşə Qəbul</div>
+        <div class="nav-section">İşə qəbul</div>
         <div class="nav-item" onclick="window.location.href='vacancies.html'">
             <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -57,35 +56,43 @@
             </svg>
             Müsahibələr
         </div>
+        <div class="nav-item {{ request()->routeIs('department.*') ? 'active' : '' }}"
+            onclick="window.location.href='{{ route('department.index') }}'">
+            <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M15 9h.01M9 13h.01M15 13h.01M9 17h6" />
+            </svg>
+            Departamentlər
+        </div>
 
-        {{-- <div class="nav-section">İşçi İdarəsi</div>
+        {{-- <div class="nav-section">Ä°ÅŸÃ§i Ä°darÉ™si</div>
         <div class="nav-item" onclick="window.location.href='employees.html'">
             <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2" />
             </svg>
-            İşçilər
+            Ä°ÅŸÃ§ilÉ™r
         </div>
         <div class="nav-item" onclick="window.location.href='leaves.html'">
             <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
             </svg>
-            Məzuniyyət
+            MÉ™zuniyyÉ™t
         </div>
         <div class="nav-item" onclick="window.location.href='permissions.html'">
             <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            İcazələr
+            Ä°cazÉ™lÉ™r
         </div>
         <div class="nav-item" onclick="window.location.href='trips.html'">
             <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
             </svg>
-            Ezamiyyətlər
+            EzamiyyÉ™tlÉ™r
         </div>
         <div class="nav-item" onclick="window.location.href='performance.html'">
             <svg class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -99,7 +106,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
             </svg>
-            Davamiyyət
+            DavamiyyÉ™t
         </div> --}}
 
         <div class="nav-section">İstifadəçi idarəetməsi</div>
@@ -142,7 +149,7 @@
         <div class="flex items-center gap-3">
             <div class="avatar bg-gradient-to-br from-brand-500 to-accent text-white text-sm">HR</div>
             <div class="flex-1 min-w-0">
-                <div class="text-sm font-semibold text-white truncate">Nicat İsmayılov</div>
+                <div class="text-sm font-semibold text-white truncate">{{ auth()->user()->name }}</div>
                 <div class="text-xs text-slate-500">HR Manager</div>
             </div>
             <div class="w-2 h-2 rounded-full bg-success"></div>

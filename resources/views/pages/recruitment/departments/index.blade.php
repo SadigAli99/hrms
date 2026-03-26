@@ -1,6 +1,6 @@
-@extends('main.layouts.master')
+@extends('layouts.master')
 
-@section('title', 'İstifadəçilər')
+@section('title', 'Departamentlər')
 
 @section('content')
     <div class="page-block space-y-6">
@@ -14,7 +14,7 @@
             <div class="vacancy-section-header">
                 <div>
                 </div>
-                <a class="btn-primary btn-with-icon" href="{{ route('user.create') }}">
+                <a class="btn-primary btn-with-icon" href="{{ route('department.create') }}">
                     <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
@@ -24,16 +24,7 @@
             <div class="vacancy-toolbar">
                 <div class="vacancy-toolbar-group">
                     <input class="input" id="search" oninput="filter()" value="{{ request('search') }}" data-list-search
-                        placeholder="Search name, email or user">
-                </div>
-                <div class="vacancy-toolbar-group vacancy-toolbar-slim">
-                    <select class="input" onchange="filter()" id="role" data-list-filter="role">
-                        <option value="">Rol</option>
-                        @foreach ($roles as $role)
-                            <option value="{{ $role->id }}" {{ request('role_id') == $role->id ? 'selected' : '' }}>
-                                {{ $role->name }}</option>
-                        @endforeach
-                    </select>
+                        placeholder="Search...">
                 </div>
                 <div class="vacancy-toolbar-group vacancy-toolbar-slim">
                     <select class="input" id="status" onchange="filter()" data-list-filter="status">
@@ -46,13 +37,13 @@
         </div>
 
         <div class="card" id="table-wrap">
-            @include('main.pages.users.partials.list')
+            @include('pages.recruitment.departments.partials.list')
         </div>
 
 
     </div>
 
-    @include('main.pages.users.partials.delete')
+    @include('pages.recruitment.departments.partials.delete')
 @endsection
 
 @push('js')
@@ -65,17 +56,13 @@
 
             let tableWrap = document.getElementById('table-wrap');
             let searchEl = document.getElementById('search');
-            let roleEl = document.getElementById('role');
             let statusEl = document.getElementById('status');
 
             let search = (searchEl?.value ?? '').trim();
             let status = (statusEl?.value ?? '').trim();
-            let role = (roleEl?.value ?? '').trim();
 
             let fetchUrl =
-                `{{ route('user.filter') }}?search=${encodeURIComponent(search)}&role=${encodeURIComponent(role)}&status=${encodeURIComponent(status)}&page=${encodeURIComponent(page)}`;
-
-            console.log(fetchUrl);
+                `{{ route('department.filter') }}?search=${encodeURIComponent(search)}&status=${encodeURIComponent(status)}&page=${encodeURIComponent(page)}`;
 
             let current = new URL(window.location.href);
 

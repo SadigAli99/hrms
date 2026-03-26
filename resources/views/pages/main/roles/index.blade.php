@@ -1,6 +1,6 @@
-@extends('main.layouts.master')
+@extends('layouts.master')
 
-@section('title', 'İcazələr')
+@section('title', 'Rollar')
 
 @section('content')
     <div class="page-block space-y-6">
@@ -14,7 +14,7 @@
             <div class="vacancy-section-header">
                 <div>
                 </div>
-                <a class="btn-primary btn-with-icon" href="{{ route('permission.create') }}">
+                <a class="btn-primary btn-with-icon" href="{{ route('role.create') }}">
                     <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
@@ -24,26 +24,26 @@
             <div class="vacancy-toolbar">
                 <div class="vacancy-toolbar-group">
                     <input class="input" id="search" oninput="filter()" value="{{ request('search') }}" data-list-search
-                        placeholder="Search...">
+                        placeholder="Search name, email or role">
                 </div>
                 <div class="vacancy-toolbar-group vacancy-toolbar-slim">
                     <select class="input" id="status" onchange="filter()" data-list-filter="status">
                         <option value="">All statuses</option>
-                        <option value="1" {{ (string)request('status') === '1' ? 'selected' : '' }}>Active</option>
-                        <option value="0" {{ (string)request('status') === '0' ? 'selected' : '' }}>Inactive</option>
+                        <option value="1" {{ (string) request('status') === '1' ? 'selected' : '' }}>Active</option>
+                        <option value="0" {{ (string) request('status') === '0' ? 'selected' : '' }}>Inactive</option>
                     </select>
                 </div>
             </div>
         </div>
 
         <div class="card" id="table-wrap">
-            @include('main.pages.permissions.partials.list')
+            @include('pages.main.roles.partials.list')
         </div>
 
 
     </div>
 
-    @include('main.pages.permissions.partials.delete')
+    @include('pages.main.roles.partials.delete')
 @endsection
 
 @push('js')
@@ -62,7 +62,7 @@
             let status = (statusEl?.value ?? '').trim();
 
             let fetchUrl =
-                `{{ route('permission.filter') }}?search=${encodeURIComponent(search)}&status=${encodeURIComponent(status)}&page=${encodeURIComponent(page)}`;
+                `{{ route('role.filter') }}?search=${encodeURIComponent(search)}&status=${encodeURIComponent(status)}&page=${encodeURIComponent(page)}`;
 
             console.log(fetchUrl);
 

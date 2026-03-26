@@ -17,9 +17,9 @@
 </head>
 
 <body data-page="dashboard">
-    @include('main.includes.sidebar')
+    @include('includes.sidebar')
     <div class="main-content page-shell">
-        @include('main.includes.header')
+        @include('includes.header')
 
         <div class="content-wrap">
             @yield('content')

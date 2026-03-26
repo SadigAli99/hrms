@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         $roles = $this->roleRepo->all();
         $users = $this->userRepo->filter($request->all());
-        return view('main.pages.users.index', compact('roles', 'users'));
+        return view('pages.main.users.index', compact('roles', 'users'));
     }
 
     /**
@@ -39,7 +39,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = $this->roleRepo->all();
-        return view('main.pages.users.create', compact('roles'));
+        return view('pages.main.users.create', compact('roles'));
     }
 
     /**
@@ -58,7 +58,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('main.pages.users.show', compact('user'));
+        return view('pages.main.users.show', compact('user'));
     }
 
     /**
@@ -67,7 +67,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = $this->roleRepo->all();
-        return view('main.pages.users.edit', compact('user', 'roles'));
+        return view('pages.main.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -100,7 +100,7 @@ class UserController extends Controller
     {
         try {
             $users = $this->userRepo->filter($request->all());
-            $view = view('main.pages.users.partials.list', compact('users'))->render();
+            $view = view('pages.main.users.partials.list', compact('users'))->render();
 
             return response()->json([
                 'success' => true,
