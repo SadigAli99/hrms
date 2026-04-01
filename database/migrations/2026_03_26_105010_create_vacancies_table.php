@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('seniority_level');
             $table->decimal('min_salary')->nullable();
             $table->decimal('max_salary')->nullable();
-            $table->string('curreny')->default('₼');
+            $table->string('currency')->default('₼');
             $table->text('location')->nullable();
             $table->longText('description')->nullable();
             $table->longText('requirements_text')->nullable();

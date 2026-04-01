@@ -72,6 +72,7 @@ class VacancyRepository extends GenericRepository implements VacancyInterface
                 'requirement_type' => isset($requirement['type']) ? $requirement['type'] : '',
                 'requirement_name' => isset($requirement['label']) ? $requirement['label'] : '',
                 'requirement_value' => isset($requirement['value']) ? $requirement['value'] : '',
+                'weight' => isset($requirement['weight']) && $requirement['weight'] !== '' ? $requirement['weight'] : null,
                 'is_required' => isset($requirement['required']) && $requirement['required'],
             ]);
         }

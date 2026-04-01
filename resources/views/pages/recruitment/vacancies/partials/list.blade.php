@@ -1,7 +1,7 @@
 <div class="vacancy-board">
     @forelse ($vacancies as $vacancy)
-    <article class="card vacancy-card" data-vacancy-card data-crud-item data-delete-entity="{{ $vacancy->title }}"
-        data-delete-action="{{ route('vacancy.destroy', $vacancy->id) }}">
+        <article class="card vacancy-card" data-vacancy-card data-crud-item data-delete-entity="{{ $vacancy->title }}"
+            data-delete-action="{{ route('vacancy.destroy', $vacancy->id) }}">
             <div class="vacancy-card-top">
                 <div>
                     <div class="text-xs text-slate-500">{{ $vacancy->department->name }} /
@@ -26,7 +26,7 @@
             </div>
             <p class="vacancy-card-copy">{{ $vacancy->description }}</p>
             <div class="vacancy-card-actions">
-                <a class="btn-primary btn-with-icon" href="#">
+                <a class="btn-primary btn-with-icon" href="{{ route('vacancy.candidates', $vacancy->id) }}">
                     <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17 8h2a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8a2 2 0 012-2h2m10 0V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2m10 0H7" />

@@ -38,6 +38,7 @@ class VacancyRequest extends FormRequest
             'vacancy_requirements.*.label' => ['required', 'string', 'max:255'],
             'vacancy_requirements.*.value' => ['nullable', 'string', 'max:255'],
             'vacancy_requirements.*.type' => ['required', 'string', 'in:skill,experience,language,education,tool,certification'],
+            'vacancy_requirements.*.weight' => ['nullable', 'in:1,3,5'],
             'vacancy_requirements.*.required' => ['required', 'in:0,1'],
         ];
     }

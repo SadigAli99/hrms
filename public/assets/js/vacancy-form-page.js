@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tagInput = document.getElementById('requirementInput');
   const tagValue = document.getElementById('requirementValue');
   const tagType = document.getElementById('requirementType');
+  const tagWeight = document.getElementById('requirementWeight');
   const tagRequired = document.getElementById('requirementRequired');
   const addButton = document.getElementById('addRequirementButton');
   const list = document.getElementById('requirementList');
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const datePickerPanel = document.querySelector('[data-date-picker-panel]');
   const datePickerToggle = document.querySelector('[data-date-picker-toggle]');
 
-  if (!tagInput || !tagValue || !tagType || !tagRequired || !addButton || !list || !form) {
+  if (!tagInput || !tagValue || !tagType || !tagWeight || !tagRequired || !addButton || !list || !form) {
     return;
   }
 
@@ -22,6 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
   let calendarDate = new Date();
+
+  const resolveDefaultRequirementWeight = type => {
+    if (type === 'skill') {
+      return '5';
+    }
+
+    if (type === 'education' || type === 'certification') {
+      return '1';
+    }
+
+    return '3';
+  };
 
   const normalizeDateInput = value => value.replace(/\D/g, '').slice(0, 8);
 
@@ -162,7 +175,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  const hydrateRequirementForm = item => {
+    tagInput.value = item.dataset.label || '';
+    tagValue.value = item.dataset.value || '';
+    tagType.value = item.dataset.type || tagType.value;
+    tagWeight.value = item.dataset.weight ?? resolveDefaultRequirementWeight(tagType.value);
+    tagRequired.checked = (item.dataset.required || 'false') === 'true';
+  };
+
   const removeHandlers = () => {
+    list.querySelectorAll('[data-edit-requirement]').forEach(button => {
+      button.onclick = () => {
+        const item = button.closest('[data-requirement-item]');
+
+        if (!item) {
+          return;
+        }
+
+        hydrateRequirementForm(item);
+        item.remove();
+        refreshRequirementIndexes();
+        tagInput.focus();
+      };
+    });
+
     list.querySelectorAll('[data-remove-requirement]').forEach(button => {
       button.onclick = () => {
         button.closest('[data-requirement-item]')?.remove();
@@ -171,9 +207,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const appendTag = (label, extraValue, type, required) => {
+  const appendTag = (label, extraValue, type, weight, required) => {
     const name = label.trim();
     const value = extraValue.trim();
+    const normalizedWeight = String(weight ?? '').trim();
+    const weightLabel = normalizedWeight === ''
+      ? 'secilmeyib'
+      : normalizedWeight === '5'
+        ? 'yuksek'
+        : normalizedWeight === '1'
+          ? 'asagi'
+          : 'orta';
 
     if (!name) {
       return;
@@ -191,35 +235,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const index = list.querySelectorAll('[data-requirement-item]').length;
 
     list.insertAdjacentHTML('beforeend', `
-      <div class="requirement-pill ${required ? 'is-required' : 'is-optional'}" data-requirement-item data-label="${name}" data-value="${value}" data-type="${type}" data-required="${required}">
+      <div class="requirement-pill ${required ? 'is-required' : 'is-optional'}" data-requirement-item data-label="${name}" data-value="${value}" data-type="${type}" data-weight="${normalizedWeight}" data-required="${required}">
         <div>
           <strong>${name}${value ? `: ${value}` : ''}</strong>
-          <span>${type} / ${required ? 'required' : 'preferred'}</span>
+          <span>${type} / ${weightLabel} / ${required ? 'required' : 'preferred'}</span>
         </div>
         <div class="requirement-pill-actions">
           <input type="hidden" name="vacancy_requirements[${index}][label]" value="${name}" data-requirement-field="label">
           <input type="hidden" name="vacancy_requirements[${index}][value]" value="${value}" data-requirement-field="value">
           <input type="hidden" name="vacancy_requirements[${index}][type]" value="${type}" data-requirement-field="type">
+          <input type="hidden" name="vacancy_requirements[${index}][weight]" value="${normalizedWeight}" data-requirement-field="weight">
           <input type="hidden" name="vacancy_requirements[${index}][required]" value="${required ? 1 : 0}" data-requirement-field="required">
-          <button type="button" data-remove-requirement>Remove</button>
+          <button class="icon-action-btn tooltip" type="button" data-edit-requirement data-tip="Edit" aria-label="Edit requirement">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536M9 11l6.232-6.232a2.5 2.5 0 113.536 3.536L12.536 14.5a4 4 0 01-1.414.94l-3.122 1.041 1.04-3.121A4 4 0 019 11z" />
+            </svg>
+          </button>
+          <button class="icon-action-btn danger tooltip" type="button" data-remove-requirement data-tip="Remove" aria-label="Remove requirement">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 7h12m-9 0V5a1 1 0 011-1h4a1 1 0 011 1v2m-7 0l1 12h4l1-12" />
+            </svg>
+          </button>
         </div>
       </div>
     `);
 
     tagInput.value = '';
     tagValue.value = '';
+    tagWeight.value = resolveDefaultRequirementWeight(tagType.value);
     removeHandlers();
     refreshRequirementIndexes();
   };
 
-  addButton.addEventListener('click', () => appendTag(tagInput.value, tagValue.value, tagType.value, tagRequired.checked));
+  addButton.addEventListener('click', () => appendTag(tagInput.value, tagValue.value, tagType.value, tagWeight.value, tagRequired.checked));
 
   [tagInput, tagValue].forEach(input => input.addEventListener('keydown', event => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      appendTag(tagInput.value, tagValue.value, tagType.value, tagRequired.checked);
+      appendTag(tagInput.value, tagValue.value, tagType.value, tagWeight.value, tagRequired.checked);
     }
   }));
+
+  tagType.addEventListener('change', () => {
+    tagWeight.value = resolveDefaultRequirementWeight(tagType.value);
+  });
 
   form.addEventListener('submit', () => {
     syncCloseDate();
@@ -275,5 +334,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   removeHandlers();
   refreshRequirementIndexes();
+  tagWeight.value = resolveDefaultRequirementWeight(tagType.value);
   syncCloseDate();
 });

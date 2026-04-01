@@ -208,9 +208,21 @@
                                 <option value="{{ $value }}">{{ $requirement_type }}</option>
                             @endforeach
                         </select>
+                        <select class="input" id="requirementWeight">
+                            <option value="">Prioritet</option>
+                            <option value="5">Yuksek</option>
+                            <option value="3" selected>Orta</option>
+                            <option value="1">Asagi</option>
+                        </select>
                         <label class="tag-toggle"><input type="checkbox" id="requirementRequired" checked>
                             Required</label>
-                        <button class="btn-primary" type="button" id="addRequirementButton">Add requirement</button>
+                        <button class="icon-action-btn tooltip" type="button" id="addRequirementButton"
+                            data-tip="Add" aria-label="Add requirement">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4" />
+                            </svg>
+                        </button>
                     </div>
                     <div class="preset-row"></div>
                     <div class="requirement-list" id="requirementList">
@@ -225,6 +237,9 @@
                                 $requirementType = is_array($requirement)
                                     ? $requirement['type'] ?? ''
                                     : $requirement->requirement_type?->value ?? ($requirement->requirement_type ?? '');
+                                $requirementWeight = (is_array($requirement)
+                                    ? $requirement['weight'] ?? 3
+                                    : $requirement->weight ?? 3);
                                 $requirementRequired = filter_var(
                                     is_array($requirement)
                                         ? $requirement['required'] ?? false
@@ -236,10 +251,12 @@
                                 <div class="requirement-pill {{ $requirementRequired ? 'is-required' : 'is-optional' }}"
                                     data-requirement-item data-label="{{ $requirementLabel }}"
                                     data-value="{{ $requirementValue }}" data-type="{{ $requirementType }}"
+                                    data-weight="{{ $requirementWeight }}"
                                     data-required="{{ $requirementRequired ? 'true' : 'false' }}">
                                     <div>
                                         <strong>{{ $requirementLabel }}{{ $requirementValue !== '' ? ': ' . $requirementValue : '' }}</strong>
                                         <span>{{ $requirementType }} /
+                                            {{ $requirementWeight === '' || $requirementWeight === null ? 'secilmeyib' : ($requirementWeight == 5 ? 'yuksek' : ($requirementWeight == 1 ? 'asagi' : 'orta')) }} /
                                             {{ $requirementRequired ? 'required' : 'preferred' }}</span>
                                     </div>
                                     <div class="requirement-pill-actions">
@@ -249,9 +266,24 @@
                                             value="{{ $requirementValue }}" data-requirement-field="value">
                                         <input type="hidden" name="vacancy_requirements[{{ $index }}][type]"
                                             value="{{ $requirementType }}" data-requirement-field="type">
+                                        <input type="hidden" name="vacancy_requirements[{{ $index }}][weight]"
+                                            value="{{ $requirementWeight }}" data-requirement-field="weight">
                                         <input type="hidden" name="vacancy_requirements[{{ $index }}][required]"
                                             value="{{ $requirementRequired ? 1 : 0 }}" data-requirement-field="required">
-                                        <button type="button" data-remove-requirement>Remove</button>
+                                        <button class="icon-action-btn tooltip" type="button"
+                                            data-edit-requirement data-tip="Edit" aria-label="Edit requirement">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15.232 5.232l3.536 3.536M9 11l6.232-6.232a2.5 2.5 0 113.536 3.536L12.536 14.5a4 4 0 01-1.414.94l-3.122 1.041 1.04-3.121A4 4 0 019 11z" />
+                                            </svg>
+                                        </button>
+                                        <button class="icon-action-btn danger tooltip" type="button"
+                                            data-remove-requirement data-tip="Remove" aria-label="Remove requirement">
+                                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 7h12m-9 0V5a1 1 0 011-1h4a1 1 0 011 1v2m-7 0l1 12h4l1-12" />
+                                            </svg>
+                                        </button>
                                     </div>
                                 </div>
                             @endif
@@ -267,6 +299,9 @@
                         <div class="mt-2 text-xs text-red-400">{{ $message }}</div>
                     @enderror
                     @error('vacancy_requirements.*.type')
+                        <div class="mt-2 text-xs text-red-400">{{ $message }}</div>
+                    @enderror
+                    @error('vacancy_requirements.*.weight')
                         <div class="mt-2 text-xs text-red-400">{{ $message }}</div>
                     @enderror
                     @error('vacancy_requirements.*.required')
