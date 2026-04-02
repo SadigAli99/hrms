@@ -86,6 +86,9 @@ class OpenAIService
             18. Enforce hard score caps when critical core skill requirements are missing
 
             Rules:
+            - All human-readable text fields must be written in Azerbaijani
+            - Write rejection_reason, professional_summary, pros_text, cons_text, notes, overall_score_reasoning, and score_adjustment_notes_json.reason in Azerbaijani
+            - Keep JSON keys in English exactly as defined in the schema
             - Set is_cv to true only if the document is clearly a CV/resume.
             - If the document is not a CV, set is_cv to false.
             - If is_cv is false:
@@ -166,6 +169,11 @@ class OpenAIService
             Document content:
 
             {$cvText}
+
+            Final output language rule:
+            - Return valid JSON only
+            - Human-readable explanatory text must be in Azerbaijani
+            - Do not answer in English unless the source text itself must be quoted briefly
 
             If the response is not valid JSON, your answer is invalid.";
     }

@@ -45,7 +45,6 @@
                     @endif
                 </div>
             </div>
-            <button class="btn-ghost text-xs" type="button" id="loadCandidateSample">Sample queue</button>
         </div>
 
         <div class="card mb-5">
@@ -55,7 +54,6 @@
                     <div class="text-xs text-slate-500">These files are ready for AI analysis. You can remove any of them
                         before selecting for analysis.</div>
                 </div>
-                <button class="btn-ghost text-xs" type="button" data-action="open-upload-modal">Add more CVs</button>
             </div>
             <div class="upload-list" id="uploadedCvList" data-server-rendered="true">
                 @forelse ($cv_files as $cvFile)
@@ -267,6 +265,12 @@
                                     ->filter(fn($value) => $value !== null && $value !== '')
                                     ->implode(' - '),
                                 'scoreReasoning' => $analysisNotes['overall_score_reasoning'] ?? null,
+                                'candidateId' => $candidate?->id,
+                                'applicationId' => $application?->id,
+                                'vacancyId' => $vacancy?->id,
+                                'talentSaveUrl' => \Illuminate\Support\Facades\Route::has('candidate.talent-pool')
+                                    ? route('candidate.talent-pool', $application->id)
+                                    : '',
                                 'scoreAdjustments' => collect($analysisNotes['score_adjustment_notes_json'] ?? [])
                                     ->map(function ($item) {
                                         if (!is_array($item)) {
@@ -300,8 +304,8 @@
                                     ($analysisNotes['expected_salary'] ?? null) !== null
                                         ? 'Gözlənilən maaş: ' . $analysisNotes['expected_salary']
                                         : null,
-                                    $analysis?->pros_text ?: null,
-                                    $analysis?->cons_text ? 'Yoxlanilmali hisseler: ' . $analysis->cons_text : null,
+                                    $analysis?->pros_text ? 'Qeydlər: ' . $analysis->pros_text : null,
+                                    $analysis?->cons_text ? 'Yoxlanılmalı hissələr: ' . $analysis->cons_text : null,
                                 ])),
                             ];
                         @endphp

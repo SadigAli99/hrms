@@ -23,7 +23,7 @@ class AuthService
     public function login(array $data, $guard = 'web')
     {
         $credentials = ['email' => $data['email'], 'password' => $data['password']];
-        $remember_me = isset($data['remember_me']) ? true : false;
+        $remember_me = isset($data['remember']) ? true : false;
         $authAttempt = Auth::guard($guard)->attempt($credentials, $remember_me);
         if (!$authAttempt) throw new InvalidCredentialsException();
     }

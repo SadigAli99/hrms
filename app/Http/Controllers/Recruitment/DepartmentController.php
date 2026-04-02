@@ -109,7 +109,7 @@ class DepartmentController extends Controller
         } catch (\Exception $ex) {
 
             return response()->json([
-                'success' => true,
+                'success' => false,
                 'message' => $ex->getMessage(),
             ]);
         }

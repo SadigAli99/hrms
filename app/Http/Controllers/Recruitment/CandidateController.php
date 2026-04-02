@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\Recruitment;
 
+use App\Enums\Application\Status;
 use App\Enums\Candidate\ParseStatus;
+use App\Enums\TalentPool\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Recruitment\Candidate\AnalyzeCvRequest;
 use App\Http\Requests\Recruitment\Candidate\BulkAnalyzeCvRequest;
 use App\Http\Requests\Recruitment\Candidate\CvFileRequest;
+use App\Http\Requests\Recruitment\Candidate\TalentPoolRequest;
 use App\Jobs\AnalyzeCandidateCvJob;
 use App\Repositories\Interfaces\ApplicationInterface;
 use App\Repositories\Interfaces\CandidateCvFileInterface;
+use App\Repositories\Interfaces\CandidateInterface;
+use App\Repositories\Interfaces\TalentPoolInterface;
 use App\Repositories\Interfaces\VacancyInterface;
 use App\Services\AnalyzeCandidateService;
 use App\Services\UploadCandidateService;
@@ -21,18 +26,21 @@ class CandidateController extends Controller
     protected $candidateCvFileRepo;
     protected $uploadCandidateService;
     protected $analyzeCandidateService;
+    protected $talentPoolRepo;
     public function __construct(
         ApplicationInterface $applicationRepo,
         VacancyInterface $vacancyRepo,
         CandidateCvFileInterface $candidateCvFileRepo,
         UploadCandidateService $uploadCandidateService,
         AnalyzeCandidateService $analyzeCandidateService,
+        TalentPoolInterface $talentPoolRepo,
     ) {
         $this->applicationRepo = $applicationRepo;
         $this->vacancyRepo = $vacancyRepo;
         $this->candidateCvFileRepo = $candidateCvFileRepo;
         $this->uploadCandidateService = $uploadCandidateService;
         $this->analyzeCandidateService = $analyzeCandidateService;
+        $this->talentPoolRepo = $talentPoolRepo;
     }
 
     public function index(string $id)
@@ -40,10 +48,12 @@ class CandidateController extends Controller
         $vacancy = $this->vacancyRepo->getById($id);
         $applications = $this->applicationRepo->getApplications($id);
         $cv_files = $this->candidateCvFileRepo->getPendingCvFiles($id);
+        $categories = Category::getValues();
         return view('pages.recruitment.candidates.index', compact([
             'vacancy',
             'cv_files',
             'applications',
+            'categories',
         ]));
     }
 
@@ -138,6 +148,22 @@ class CandidateController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Bulk analyze queued',
+        ]);
+    }
+
+    public function talent_pool(TalentPoolRequest $request)
+    {
+        $data = $request->validated();
+        $application = $this->applicationRepo->getById($data['source_application_id']);
+        $this->applicationRepo->update($application, [
+            'status' => Status::SHORTLISTED,
+        ]);
+
+        $this->talentPoolRepo->create($data);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Namizəd talent pool-a əlavə olundu',
         ]);
     }
 }

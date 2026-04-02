@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const interviewAction = document.getElementById('candidateInterviewAction');
   const talentAction = document.getElementById('candidateTalentAction');
+  const candidateTalentTitle = document.getElementById('candidateTalentTitle');
+  const candidateTalentNote = document.getElementById('candidateTalentNote');
+  const candidateTalentSave = document.getElementById('candidateTalentSave');
   const rejectAction = document.getElementById('candidateRejectAction');
   const offerAction = document.getElementById('candidateOfferAction');
   const candidateProfileName = document.getElementById('candidateProfileName');
@@ -68,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let uploadedFiles = [];
   let pendingDeleteCv = null;
   let pendingRetryParse = null;
+  let currentProfilePayload = null;
 
   const escapeHtml = value => String(value ?? '')
     .replace(/&/g, '&amp;')
@@ -97,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (!Array.isArray(items) || !items.length) {
-      candidateProfileHistory.innerHTML = '<div class="empty-state">History yoxdur.</div>';
+      candidateProfileHistory.innerHTML = '<div class="empty-state">Tarixçə yoxdur.</div>';
       return;
     }
 
@@ -471,16 +475,36 @@ document.addEventListener('DOMContentLoaded', () => {
     analyzeModal?.classList.add('open');
   });
   interviewAction?.addEventListener('click', () => interviewModal?.classList.add('open'));
-  talentAction?.addEventListener('click', () => talentModal?.classList.add('open'));
   rejectAction?.addEventListener('click', () => rejectModal?.classList.add('open'));
   offerAction?.addEventListener('click', () => offerModal?.classList.add('open'));
 
   document.querySelectorAll('[data-open-profile]').forEach(button => {
     button.addEventListener('click', () => {
       const payload = button.dataset.profile ? JSON.parse(button.dataset.profile) : null;
+      currentProfilePayload = payload;
       fillProfileModal(payload);
       profileModal?.classList.add('open');
     });
+  });
+
+  talentAction?.addEventListener('click', () => {
+    if (!currentProfilePayload) {
+      return;
+    }
+
+    if (candidateTalentTitle) {
+      candidateTalentTitle.textContent = `${currentProfilePayload.name || 'Namizəd'} / Talent Pool`;
+    }
+
+    if (candidateTalentNote) {
+      candidateTalentNote.value = '';
+    }
+
+    talentModal?.querySelectorAll('input[name="candidateTalentCategory"]').forEach(input => {
+      input.checked = input.value === 'recommended';
+    });
+
+    talentModal?.classList.add('open');
   });
 
   bindClose(closeUploadButtons, uploadModal);
@@ -749,6 +773,55 @@ document.addEventListener('DOMContentLoaded', () => {
         candidateRetryParseConfirm.disabled = false;
         candidateRetryParseConfirm.textContent = 'Retry parse';
       }
+  });
+
+  candidateTalentSave?.addEventListener('click', async () => {
+    if (!currentProfilePayload) {
+      return;
+    }
+
+    const saveUrl = currentProfilePayload.talentSaveUrl;
+    if (!saveUrl) {
+      window.alert('Talent Pool route is not ready');
+      return;
+    }
+
+    const selectedCategory = talentModal?.querySelector('input[name="candidateTalentCategory"]:checked')?.value || 'recommended';
+    const note = candidateTalentNote?.value.trim() || '';
+
+    candidateTalentSave.disabled = true;
+    candidateTalentSave.textContent = 'Göndərilir...';
+
+    try {
+      const response = await fetch(saveUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': csrfToken || '',
+          'X-Requested-With': 'XMLHttpRequest',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          candidate_id: currentProfilePayload.candidateId,
+          source_application_id: currentProfilePayload.applicationId,
+          source_vacancy_id: currentProfilePayload.vacancyId,
+          category: selectedCategory,
+          note
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Talent Pool əməliyyatı uğursuz oldu');
+      }
+
+      window.location.reload();
+    } catch (error) {
+      window.alert(error.message || 'Talent Pool əməliyyatı uğursuz oldu');
+      candidateTalentSave.disabled = false;
+      candidateTalentSave.textContent = 'Talent Pool-a əlavə et';
+    }
   });
 
   renderQueue();
